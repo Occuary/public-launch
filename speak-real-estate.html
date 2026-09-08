@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Speak Real Estate — Record My Voice Now</title>
+  <meta name="description" content="Owner-first voice recorder. Recording stays on this device. Occuary / AORPO." />
+  <style>
+    :root { --navy:#07111f; --ink:#f6f1e6; --muted:#b7c0cc; --gold:#c9a227; --gold2:#e6c35a; --card:#101c2e; --line:rgba(201,162,39,.28); --good:#7dcea0; --bad:#e07a7a; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:Georgia,Palatino,serif; background:var(--navy); color:var(--ink); line-height:1.55; }
+    a { color:inherit; }
+    .wrap { width:min(820px, calc(100% - 40px)); margin:0 auto; }
+    header { padding:48px 0 20px; }
+    .kicker { color:var(--gold); letter-spacing:.2em; text-transform:uppercase; font-size:12px; }
+    h1 { font-size:clamp(28px,4.6vw,44px); line-height:1.1; margin:12px 0; font-weight:600; }
+    .lede { color:#dbe2ea; font-size:18px; }
+    .panel { background:var(--card); border:1px solid rgba(255,255,255,.06); padding:22px; margin:18px 0; }
+    label, .hint { display:block; color:var(--muted); font-size:14px; margin:10px 0 6px; }
+    input[type=text], select, textarea { width:100%; padding:12px 14px; background:#08121f; border:1px solid var(--line); color:white; font:inherit; }
+    textarea { min-height:120px; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:14px; }
+    button, .btn { font:inherit; cursor:pointer; background:linear-gradient(180deg,#d4b24a,#b08d1d); color:#1a1404; border:0; font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:12px; padding:12px 16px; text-decoration:none; display:inline-block; }
+    button.ghost, .btn.ghost { background:transparent; color:var(--gold2); border:1px solid var(--gold); }
+    button:disabled { opacity:.45; cursor:not-allowed; }
+    .status { margin-top:12px; color:var(--gold2); min-height:1.4em; }
+    .status.bad { color:var(--bad); }
+    .status.good { color:var(--good); }
+    .meter { height:8px; background:#08121f; margin-top:14px; overflow:hidden; }
+    .meter > span { display:block; height:100%; width:0; background:var(--gold2); }
+    audio { width:100%; margin-top:14px; }
+    ul { margin:8px 0 0 18px; color:#d5dde6; }
+    li { margin:6px 0; }
+    footer { padding:36px 0 56px; color:var(--muted); font-size:13px; }
+    .lock b { letter-spacing:.28em; color:var(--gold2); }
+    .consent { display:flex; gap:10px; align-items:flex-start; margin:12px 0; color:#d5dde6; }
+    .consent input { margin-top:5px; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <p class="kicker"><a href="index.html">Public launch</a> · Speak Real Estate</p>
+    <h1>Record my voice now</h1>
+    <p class="lede">This is the owner speaking, not the listing agent rewriting the house. This build records in the browser. The file stays on this device. Nothing is uploaded. Cloud transcription and storage is the paid step later — not this page.</p>
+  </header>
+
+  <main class="wrap">
+    <div class="panel">
+      <label for="who">Who is speaking</label>
+      <input id="who" type="text" placeholder="Owner name" />
+      <label for="place">Property</label>
+      <input id="place" type="text" placeholder="Street, city, or just a nickname for this file" />
+      <label for="room">Room or pass</label>
+      <select id="room">
+        <option>Whole house walk</option>
+        <option>Exterior / curb</option>
+        <option>Entry</option>
+        <option>Living</option>
+        <option>Kitchen</option>
+        <option>Primary bedroom</option>
+        <option>Bathroom</option>
+        <option>Other bedroom</option>
+        <option>Garage / utility</option>
+        <option>Yard</option>
+        <option>What I will not give up</option>
+        <option>Net proceeds / terms I care about</option>
+      </select>
+      <label class="consent"><input id="consent" type="checkbox" /> <span>I am the owner or I have the owner’s permission. This recording is for the owner file. I understand this page does not send audio to Occuary or to an MLS.</span></label>
+      <div class="row">
+        <button id="start" type="button">Start recording</button>
+        <button id="stop" type="button" class="ghost" disabled>Stop</button>
+        <button id="save" type="button" class="ghost" disabled>Download file</button>
+      </div>
+      <div class="meter" aria-hidden="true"><span id="bar"></span></div>
+      <p class="status" id="status">Mic is idle.</p>
+      <audio id="player" controls hidden></audio>
+    </div>
+
+    <div class="panel">
+      <label for="notes">Live notes / transcript scratch</label>
+      <p class="hint">Optional. Type while you talk, or use the browser speech box if your browser offers it. This text also stays on the device unless you copy it.</p>
+      <textarea id="notes" placeholder="Kitchen — original cabinets, new dishwasher 2024, leak under sink last winter, fixed…"></textarea>
+      <div class="row">
+        <button id="talk" type="button" class="ghost">Start browser speech-to-text</button>
+        <button id="talkStop" type="button" class="ghost" disabled>Stop speech-to-text</button>
+      </div>
+      <p class="hint" id="speechHint">Chrome and Edge usually support this. Safari is uneven. This is the free local demo, not the paid speech stack.</p>
+    </div>
+
+    <div class="panel">
+      <h3>What to say on a first pass</h3>
+      <ul>
+        <li>What you love and will not give up.</li>
+        <li>What is wrong, old, or already fixed — in your words.</li>
+        <li>What a photo will not show.</li>
+        <li>What you think the house is worth, and why, without handing that number to a lead portal first.</li>
+        <li>Title, showing rules, and who is allowed to talk about this house.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="wrap">
+    Association of Real Property Owners<br />
+    <span style="display:inline-block;width:48px;height:1px;background:#c9a227;margin:8px 0"></span><br />
+    <b style="letter-spacing:.28em;color:#e6c35a">AORPO</b><br />
+    AssociationOfRealPropertyOwners.com
+    <p style="margin-top:14px"><a href="index.html">Launch hub</a> · Occuary · recording stays on device in this build</p>
+  </footer>
+
+  <script>
+    const startBtn = document.getElementById('start');
+    const stopBtn = document.getElementById('stop');
+    const saveBtn = document.getElementById('save');
+    const statusEl = document.getElementById('status');
+    const player = document.getElementById('player');
+    const bar = document.getElementById('bar');
+    const consent = document.getElementById('consent');
+    const notes = document.getElementById('notes');
+    const talkBtn = document.getElementById('talk');
+    const talkStop = document.getElementById('talkStop');
+    const speechHint = document.getElementById('speechHint');
+
+    let mediaRecorder = null;
+    let chunks = [];
+    let blob = null;
+    let timer = null;
+    let startedAt = 0;
+    let recognition = null;
+
+    function setStatus(msg, kind) {
+      statusEl.textContent = msg;
+      statusEl.className = 'status' + (kind ? ' ' + kind : '');
+    }
+
+    function fileName() {
+      const who = (document.getElementById('who').value || 'owner').replace(/[^a-z0-9]+/gi, '-');
+      const place = (document.getElementById('place').value || 'house').replace(/[^a-z0-9]+/gi, '-');
+      const room = (document.getElementById('room').value || 'walk').replace(/[^a-z0-9]+/gi, '-');
+      const t = new Date().toISOString().replace(/[:.]/g, '-');
+      return 'speak-real-estate-' + who + '-' + place + '-' + room + '-' + t + '.webm';
+    }
+
+    startBtn.addEventListener('click', async () => {
+      if (!consent.checked) {
+        setStatus('Check the owner-permission box first.', 'bad');
+        return;
+      }
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        setStatus('This browser will not give the microphone to a file:// page. Serve it over https or localhost.', 'bad');
+        return;
+      }
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        chunks = [];
+        blob = null;
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+        mediaRecorder.onstop = () => {
+          stream.getTracks().forEach((t) => t.stop());
+          blob = new Blob(chunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+          player.src = URL.createObjectURL(blob);
+          player.hidden = false;
+          saveBtn.disabled = false;
+          setStatus('Stopped. Play it back. Download it. It has not left this device.', 'good');
+        };
+        mediaRecorder.start();
+        startedAt = Date.now();
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+        saveBtn.disabled = true;
+        player.hidden = true;
+        timer = setInterval(() => {
+          const sec = Math.floor((Date.now() - startedAt) / 1000);
+          bar.style.width = Math.min(100, (sec / 180) * 100) + '%';
+          setStatus('Recording · ' + sec + 's · still local');
+        }, 250);
+      } catch (err) {
+        setStatus('Mic blocked or failed: ' + err.message, 'bad');
+      }
+    });
+
+    stopBtn.addEventListener('click', () => {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+      clearInterval(timer);
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+    });
+
+    saveBtn.addEventListener('click', () => {
+      if (!blob) return;
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = fileName();
+      a.click();
+      setStatus('Download started: ' + fileName(), 'good');
+    });
+
+    const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Speech) {
+      talkBtn.disabled = true;
+      speechHint.textContent = 'This browser has no speech-to-text API. Record audio and download it. Transcription is the later paid step.';
+    }
+
+    talkBtn.addEventListener('click', () => {
+      if (!Speech) return;
+      recognition = new Speech();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+      recognition.onresult = (event) => {
+        let finalText = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          if (event.results[i].isFinal) finalText += event.results[i][0].transcript + ' ';
+        }
+        if (finalText) notes.value = (notes.value ? notes.value + '\n' : '') + finalText.trim();
+      };
+      recognition.onerror = (e) => { speechHint.textContent = 'Speech error: ' + e.error; };
+      recognition.start();
+      talkBtn.disabled = true;
+      talkStop.disabled = false;
+      speechHint.textContent = 'Listening for speech-to-text. This is the browser, not Occuary servers.';
+    });
+
+    talkStop.addEventListener('click', () => {
+      if (recognition) recognition.stop();
+      talkBtn.disabled = false;
+      talkStop.disabled = true;
+      speechHint.textContent = 'Speech-to-text stopped.';
+    });
+  </script>
+</body>
+</html>

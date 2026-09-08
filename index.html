@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Occuary Public Launch</title>
+  <meta name="description" content="Occuary public launch hub. Speak Real Estate. Owner-first. AORPO." />
+  <style>
+    :root { --navy:#07111f; --ink:#f6f1e6; --muted:#b7c0cc; --gold:#c9a227; --gold2:#e6c35a; --card:#101c2e; --line:rgba(201,162,39,.28); }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:Georgia,Palatino,serif; background:var(--navy); color:var(--ink); line-height:1.55; }
+    a { color:inherit; }
+    .wrap { width:min(980px, calc(100% - 40px)); margin:0 auto; }
+    header { padding:56px 0 28px; }
+    .kicker { color:var(--gold); letter-spacing:.2em; text-transform:uppercase; font-size:12px; }
+    h1 { font-size:clamp(32px,5vw,52px); line-height:1.08; margin:12px 0 16px; font-weight:600; }
+    .lede { color:#dbe2ea; font-size:19px; max-width:40em; }
+    section { padding:28px 0 48px; }
+    table { width:100%; border-collapse:collapse; font-size:15px; }
+    th, td { text-align:left; padding:12px 10px; border-bottom:1px solid rgba(255,255,255,.08); vertical-align:top; }
+    th { color:var(--gold2); letter-spacing:.08em; font-size:12px; text-transform:uppercase; }
+    .card { background:var(--card); border:1px solid rgba(255,255,255,.06); padding:20px; margin-top:16px; }
+    .btn { display:inline-block; background:linear-gradient(180deg,#d4b24a,#b08d1d); color:#1a1404; text-decoration:none; font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:12px; padding:12px 16px; margin:8px 8px 0 0; }
+    .btn.ghost { background:transparent; color:var(--gold2); border:1px solid var(--gold); }
+    .warn { border-left:3px solid var(--gold); padding:14px 16px; background:#101b2c; margin-top:18px; }
+    footer { padding:40px 0 60px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); }
+    .lock .bar { width:48px; height:1px; background:var(--gold); margin:8px 0; }
+    .lock b { letter-spacing:.28em; color:var(--gold2); }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <p class="kicker">Public launch · not a brokerage</p>
+    <h1>Occuary public launch</h1>
+    <p class="lede">This is the door for the stack that lived on disk as PUBLIC_LAUNCH. Occuary is the working surface. AORPO is the owner body. Speak Real Estate is the first live tool.</p>
+    <p style="margin-top:20px">
+      <a class="btn" href="speak-real-estate.html">Record my voice now</a>
+      <a class="btn ghost" href="https://github.com/Occuary/occuary-door">Occuary door repo</a>
+    </p>
+  </header>
+
+  <section class="wrap">
+    <div class="warn">
+      <strong>Standing reminder.</strong> Owner-occupied U.S. housing value and homeowner equity are stock — on the order of $49T value / $35T equity in 2026 Q1 Fed-linked prints. That is what owners still hold. It is not a receipt for “$1 trillion taken.” There is no audited split of how much went to associations, brokerages, portals, title, or lenders. Do not publish $1T as a statistic until the method exists.
+    </div>
+
+    <h2 style="margin:28px 0 8px;font-size:28px;">Launch map</h2>
+    <p style="color:#b7c0cc">Same map as the PUBLIC_LAUNCH table. Pages marked live are in this repo or occuary-door. The rest are named so the tree is not lost.</p>
+    <table>
+      <thead><tr><th>Surface</th><th>What it is</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>This page</td><td>Main launch hub</td><td>Live here</td></tr>
+        <tr><td><a href="speak-real-estate.html">Speak Real Estate / RECORD_MY_VOICE_NOW</a></td><td>Owner records the house in their own voice. File stays on the device in this build.</td><td>Live here</td></tr>
+        <tr><td><a href="https://github.com/Occuary/occuary-door">occuary-door</a></td><td>Buyer membership door + AORPO page</td><td>Live in door repo</td></tr>
+        <tr><td>selling-your-house / marketyourhouse</td><td>Seller sites fed by owner speech + room form</td><td>Named — source still on local disk</td></tr>
+        <tr><td>Seller room-by-room form</td><td>Structured owner input</td><td>Named — source still on local disk</td></tr>
+        <tr><td>owner-first-system / owner-mls-pictures</td><td>Owner picks first. Photos and system are not agent-owned.</td><td>Named</td></tr>
+        <tr><td>on-demand-iq / breakawaymls / mlspowerhouse / streamingmls</td><td>Intelligence rails. Not a licensed MLS feed.</td><td>Named</td></tr>
+        <tr><td>digital-studio / unleash-your-voice</td><td>Studio + podcast create</td><td>Named</td></tr>
+        <tr><td>consumer-vault / advocacy one-pager</td><td>Vault, audit, buy/sell, one-pager</td><td>Named</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <h3>Two different things</h3>
+      <p><strong>Occuary</strong> is the software and membership door. Intelligence officer work — Washington agents, developers, builders, lenders, title — feeds the product. It does not make Occuary a brokerage.</p>
+      <p style="margin-top:10px"><strong>AORPO</strong> is the Association of Real Property Owners. People, then principles. Not NAR. Not NAR’s American Property Owners Alliance.</p>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <div class="lock">
+      Association of Real Property Owners
+      <div class="bar"></div>
+      <b>AORPO</b><br />
+      AssociationOfRealPropertyOwners.com
+    </div>
+    <p style="margin-top:16px">Occuary · public launch · not a brokerage · not legal advice<br />Powered by people. Then powered by principles.</p>
+  </footer>
+</body>
+</html>
